@@ -41,11 +41,15 @@ class Dieperbole
     s.sub!(/^Yes, /, '')
     s.sub!(/^But /, 'However, ')
 
-    s # TODO
+    # Ok, that'll do.
+    s
   end
 
   def get_sentences
-    content.scan(/[^\.?]+[\.?][\s]/m)
+    # The first .? is to help prevent incursions into HTML tags.
+    # This is not a proper parser. Can you FEEL the hack? :)
+    content.scan(/(?:<p>|[\.?]\s)[^\.?]+?[\.?]\s/m)
+           .collect{ |s| s.sub(/^[\.?]/, '') } # Strip the first char if needed.
   end
 
 end
