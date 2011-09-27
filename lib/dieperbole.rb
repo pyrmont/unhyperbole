@@ -56,10 +56,10 @@ class Dieperbole
     end    
 
     # Solve that I disease problem.
-    s.sub!(/^I /, '')
+    return '' if s.match(/^I /)
     
     # No sentence needs to begin with 'Yes'.
-    s.sub!(/^Yes, /, '')
+    s.sub!(/^Yes, /, '').capitalize!
     
     # But's a conjunctive. What you mean is 'However'.
     s.sub!(/^But /, 'However, ')
