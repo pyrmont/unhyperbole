@@ -16,6 +16,10 @@ class Dieperbole
     raw_content.sub!(/<div class="module-crunchbase">.*/m, '')
 
     doc = Nokogiri::HTML(raw_content)
+    doc.css('blockquote p').each do |p|
+      p['class'] = 'blockquote'
+    end
+    
     lines = []
     doc.css('p').each do |n|
       lines << n.to_html
@@ -41,7 +45,7 @@ class Dieperbole
     s.strip!
     
     return '' if s.empty?
-
+    
     # If there's a next sentence (and this isn't at the end of a paragraph):
     next_idx = idx + 1
     if sentences[next_idx]
@@ -53,20 +57,20 @@ class Dieperbole
       end
 
       # Again with conjunctions beginning sentences.
-      if sentences[next_idx].match(/^(?:<[a-zA-Z](?: [a-zA-Z-]+="[^"]+">)*)?And /)
+      if sentences[next_idx].match(/^(?:<[a-zA-Z]+(?: [a-zA-Z-]+="[^"]+">)*)?And /)
         s = s + ' ' + sentences[next_idx][0, 1].downcase + sentences[next_idx][1..-1]
         sentences[next_idx] = ''
       end
     end    
     
     # Solve that I disease problem.
-    return '' if s.match(/^(?:<[a-zA-Z](?: [a-zA-Z-]+="[^"]+">)*)?I/)
+    return '' if s.match(/^(?:<[a-zA-Z]+(?: [a-zA-Z-]+="[^"]+">)*)?I /)
     
     # No sentence needs to begin with 'Yes'.
-    s.sub!(/^(?:<[a-zA-Z](?: [a-zA-Z-]+="[^"]+">)*)?Yes, /, '')
+    s.sub!(/^(?:<[a-zA-Z]+(?: [a-zA-Z-]+="[^"]+">)*)?Yes, /, '')
     
     # But's a conjunctive. What you mean is 'However'.
-    s.sub!(/^(?:<[a-zA-Z](?: [a-zA-Z-]+="[^"]+">)*)?But /, 'However, ')
+    s.sub!(/^(?:<[a-zA-Z]+(?: [a-zA-Z-]+="[^"]+">)*)?But /, 'However, ')
     
     # That'll do.
     s[0].capitalize + s[1..-1]

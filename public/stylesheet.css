@@ -1,0 +1,103 @@
+/*-----------------------------------------------------------------------------------------------
+  Global Styles
+-----------------------------------------------------------------------------------------------*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.hide {
+	display: none;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.clear {
+	clear: both;
+	height: 1px;
+	font-size: 1px;
+	line-height: 1px;
+}
+
+.align_right {
+	text-align: right;
+}
+
+/*-----------------------------------------------------------------------------------------------
+  Layout / Base Page Styling
+-----------------------------------------------------------------------------------------------*/
+
+html {
+	height: 100%;
+}
+
+body {
+	font-family: 'Lora', serif;
+	font-size: 16px;
+	height: 100%;
+}
+
+div {
+	margin: 0 auto;
+	width: 50%;
+	max-width: 500px;
+}
+
+h2 {
+	font-size: 1.3em;
+	margin: 2em auto 0;
+	width: 50%;
+	max-width: 500px;
+	padding-bottom: 0.3em;
+	border-bottom: 1px solid black;
+}
+
+p {
+	margin-bottom: 1.0em;
+	line-height: 1.8em;
+}
+
+p.blockquote {
+	padding-left: 2.0em;
+	opacity: 0.7;
+}
+
+a {
+	color: #0A9600;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+/*-----------------------------------------------------------------------------------------------
+  Global Styles
+-----------------------------------------------------------------------------------------------*/
+
+div#footer {
+	border-top: 1px solid black;
+	font-size: 0.8em;
+	opacity: 0.5;
+	padding: 2em 0;	
+}
