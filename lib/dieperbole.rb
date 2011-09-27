@@ -65,7 +65,7 @@ class Dieperbole
     s.sub!(/^But /, 'However, ')
     
     # That'll do.
-    s.capitalize!
+    s[0].capitalize + s[1..-1]
   end
 
   def get_paragraphs
