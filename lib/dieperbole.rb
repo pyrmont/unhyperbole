@@ -30,7 +30,18 @@ class Dieperbole
   end
 
   def unhyperbole_sentence(sentence, sentences)
-    sentence # TODO
+    s = sentence
+    s.strip
+
+    # Bounceable offences.
+    return '' if s.match(/^Yes/)
+    return '' if s.match(/\?$/)
+    return '' if s.match(/^I /)
+    
+    # Moderate offences.
+    s.sub!(/^Yes, /, '')
+
+    s # TODO
   end
 
   def get_sentences
