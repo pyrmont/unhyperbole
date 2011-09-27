@@ -17,7 +17,10 @@ class Dieperbole
 
     doc = Nokogiri::HTML(raw_content)
     lines = []
-    doc.xpath('//p').to_html
+    doc.css('p').each do |n|
+      lines << n.to_html
+    end
+    lines
   end
 
   def unhyperbole
@@ -55,7 +58,7 @@ class Dieperbole
 
   def get_paragraphs
     paragraphs = []
-    content.scan(/<p>.+?<\/p>/m).each do |p|
+    content.each do |p|
       paragraphs << get_sentences(p)
     end
     paragraphs
@@ -64,8 +67,12 @@ class Dieperbole
   def get_sentences(paragraph)
     # The first .? is to help prevent incursions into HTML tags.
     # This is not a proper parser. Can you FEEL the hack? :)
-    paragraph.scan(/(?:<p>|[\.?]\s)[^\.?]+?[\.?]\s/m)
-             .collect{ |s| s.sub(/^[\.?]/, '') } # Strip the first char if needed.
+    paragraph.scan(/(?:<p>|[\.\?]\s)[^\.\?]+?[\.\?](?:\s|\n)/m)
+             .collect do |sentence|
+               sentence.sub(/^<p>/, '</p><p>')   # Horrific
+                       .sub(/^(<p>|[\.\?])/, '') # Strip the first block if needed.
+                       .sub(/^<\/p>/, '')        # Truly horrific 
+             end
   end
 
 end
