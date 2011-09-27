@@ -59,13 +59,13 @@ class Dieperbole
     return '' if s.match(/^I /)
     
     # No sentence needs to begin with 'Yes'.
-    s.sub!(/^Yes, /, '').capitalize!
+    s.sub!(/^Yes, /, '')
     
     # But's a conjunctive. What you mean is 'However'.
     s.sub!(/^But /, 'However, ')
     
     # That'll do.
-    s
+    s.capitalize!
   end
 
   def get_paragraphs
