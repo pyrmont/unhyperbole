@@ -38,9 +38,9 @@ class Dieperbole
     s = sentences[idx]
     s.strip!
 
-    # If there's a next sentence, and this isn't at the end of a paragraph:
+    # If there's a next sentence (and this isn't at the end of a paragraph):
     next_idx = idx + 1
-    if sentences[next_idx] && !s.match(/<\/p>$/)
+    if sentences[next_idx]
       # Eliminate "Will flibber flubber? Yes." collections.
       # Let's leave the rhetorical questions to the politicians.
       if s.match(/\?$/) && sentences[next_idx].length < 12 # Mike Magic.
@@ -71,12 +71,19 @@ class Dieperbole
   def get_sentences(paragraph)
     # The first .? is to help prevent incursions into HTML tags.
     # This is not a proper parser. Can you FEEL the hack? :)
-    paragraph.scan(/(?:<p>|[\.\?]\s)[^\.\?]+?[\.\?](?:\s|\n)/m)
-             .collect do |sentence|
-               sentence.sub(/^<p>/, '</p><p>')   # Horrific
-                       .sub(/^(<p>|[\.\?])/, '') # Strip the first block if needed.
-                       .sub(/^<\/p>/, '')        # Truly horrific 
-             end
+    sentences = []
+    offset = 0
+    while offset < paragraph.length
+      m = paragraph.match(/(.+?(?:\. |\? |\.<\/p>))/m, offset)
+      break unless m
+
+      sentences << m[0] # Add it to the pile.
+
+      # .offset returns [start, end] - take the
+      # end and use it as the new offset.
+      offset = m.offset(0)[1]
+    end
+    sentences
   end
 
 end
