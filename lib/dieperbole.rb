@@ -21,52 +21,63 @@ class Dieperbole
   end
 
   def unhyperbole
-#    cleaned = []
-#    sentences = get_sentences
-#    sentences.each do |s|
-#      cleaned.push unhyperbole_sentence(s, sentences)
-#    end
-#    cleaned.join(" ")
+    dieperbolic_sentences = []
+    hyperbolic_sentences = get_sentences
+    length = hyperbolic_sentences.length
     
+    # Initialise our sentences to false.
+    prev_s = false
+    this_s = false
+    next_s = false
     
-    sentences = get_sentences
-    length = sentences.length
     for i in 0...length do
-      prev_s = (i == 0) ? false : sentence[i-1]
-      this_s = sentence[i]
-      next_s = (i == (sentences))
+      
+      prev_s = this_s
+      this_s = (next_s) ? next_s : hyperbolic_sentence[i]
+      next_s = (i == (length - 1)) ? false : hyperbolic_sentences[i+1]
+
+      # This was just a paragraph break or it's an empty string. Push it on and then skip to the next sentence.
+      if this_s == false || this_s == ''
+        dieperbolic_sentences push this_s
+        next
+      end
 
       # No sentence needs to begin with 'Yes'.
       this_s.sub!(/^Yes, /, '')
       
+      # But's a conjunctive. What you mean is 'However'.
+      this_s.sub!(/^But /, 'However, ')
+      
       # Let's leave the rhetorical questions to the politicians.
       if this_s.match!(/\?$/)
-        if next_s.length != '' || next_s.length < 5
-          
+        if next_s && next_s.length < 12 # Change this magic value
+          this_s = ''
+          next_s = ''
       end
-      # return '' if this_s.match(/^Yes/)
-      # return '' if this_s.match(/\?$/)
-      # return '' if this_s.match(/^I /)
+      
+      # Solve that I disease problem.
+      this_s.sub!(/^I /)
+      
+      # Again with conjunctions beginning sentences.
+      if next_s && next_s.match(/^And /)
+        this_s = this_s + ' ' + next_s[0, 1].downcase + next_s[1..-1]
+        next_s = ''
+      end
+      
+      dieperbolic_sentences.push this_s
+    end    
+
+    cleaned_content = '<p>'
+
+    dieperbolic_sentences.each do |sentence|
+      if sentence || sentence != ''
+        cleaned_content += '' + sentence
+      elsif sentence
+        cleaned_content += '</p>'
+      end
     end
     
-    
-    
-  end
-
-  def unhyperbole_sentence(sentence, sentences)
-    s = sentence
-    s.strip!
-
-    # Bounceable offences.
-    return '' if s.match(/\?$/)
-    return '' if s.match(/^I /)
-    
-    # Moderate offences.
-    s.sub!(/^Yes, /, '')
-    s.sub!(/^But /, 'However, ')
-
-    # Ok, that'll do.
-    s
+    cleaned_content += '</p>'
   end
 
   def get_sentences
