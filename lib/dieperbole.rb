@@ -21,44 +21,33 @@ class Dieperbole
   end
 
   def unhyperbole
-#    cleaned = []
-#    sentences = get_sentences
-#    sentences.each do |s|
-#      cleaned.push unhyperbole_sentence(s, sentences)
-#    end
-#    cleaned.join(" ")
-    
-    
-    sentences = get_sentences
-    length = sentences.length
-    for i in 0...length do
-      prev_s = (i == 0) ? false : sentence[i-1]
-      this_s = sentence[i]
-      next_s = (i == (sentences))
-
-      # No sentence needs to begin with 'Yes'.
-      this_s.sub!(/^Yes, /, '')
-      
-      # Let's leave the rhetorical questions to the politicians.
-      if this_s.match!(/\?$/)
-        if next_s.length != '' || next_s.length < 5
-          
+    cleaned = []
+    paragraphs = get_paragraphs
+    paragraphs.each do |sentences|
+      puts sentences
+      next unless sentences
+      sentences.each_index do |idx|
+        cleaned.push unhyperbole_sentence(idx, sentences)
       end
-      # return '' if this_s.match(/^Yes/)
-      # return '' if this_s.match(/\?$/)
-      # return '' if this_s.match(/^I /)
     end
-    
-    
-    
+    cleaned.join(" ")
   end
 
-  def unhyperbole_sentence(sentence, sentences)
-    s = sentence
+  def unhyperbole_sentence(idx, sentences)
+    s = sentences[idx]
     s.strip!
 
+    # If there's a next sentence, and this isn't at the end of a paragraph:
+    next_idx = idx + 1
+    if sentences[next_idx] && !s.match(/<\/p>$/)
+      # Eliminate "Will flibber flubber? Yes." collections.
+      if s.match(/\?$/) && sentences[next_idx].length < 6
+        sentences[next_idx] = ''
+        return ''
+      end
+    end  
+
     # Bounceable offences.
-    return '' if s.match(/\?$/)
     return '' if s.match(/^I /)
     
     # Moderate offences.
@@ -69,11 +58,19 @@ class Dieperbole
     s
   end
 
-  def get_sentences
+  def get_paragraphs
+    paragraphs = []
+    content.scan(/<p>.+?<\/p>/m).each do |p|
+      paragraphs << get_sentences(p)
+    end
+    paragraphs
+  end
+
+  def get_sentences(paragraph)
     # The first .? is to help prevent incursions into HTML tags.
     # This is not a proper parser. Can you FEEL the hack? :)
-    content.scan(/(?:<p>|[\.?]\s)[^\.?]+?[\.?]\s/m)
-           .collect{ |s| s.sub(/^[\.?]/, '') } # Strip the first char if needed.
+    paragraph.scan(/(?:<p>|[\.?]\s)[^\.?]+?[\.?]\s/m)
+             .collect{ |s| s.sub(/^[\.?]/, '') } # Strip the first char if needed.
   end
 
 end
