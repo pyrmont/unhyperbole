@@ -24,8 +24,6 @@ class Dieperbole
     cleaned = []
     paragraphs = get_paragraphs
     paragraphs.each do |sentences|
-      puts sentences
-      next unless sentences
       sentences.each_index do |idx|
         cleaned.push unhyperbole_sentence(idx, sentences)
       end
@@ -41,7 +39,8 @@ class Dieperbole
     next_idx = idx + 1
     if sentences[next_idx] && !s.match(/<\/p>$/)
       # Eliminate "Will flibber flubber? Yes." collections.
-      if s.match(/\?$/) && sentences[next_idx].length < 6
+      # Let's leave the rhetorical questions to the politicians.
+      if s.match(/\?$/) && sentences[next_idx].length < 12 # Mike Magic.
         sentences[next_idx] = ''
         return ''
       end
