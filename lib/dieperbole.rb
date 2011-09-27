@@ -56,7 +56,7 @@ class Dieperbole
     end    
 
     # Solve that I disease problem.
-    s.sub!(/^I /)
+    s.sub!(/^I /, '')
     
     # No sentence needs to begin with 'Yes'.
     s.sub!(/^Yes, /, '')
