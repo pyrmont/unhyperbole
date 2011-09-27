@@ -31,7 +31,7 @@ class Dieperbole
 
   def unhyperbole_sentence(sentence, sentences)
     s = sentence
-    s.strip
+    s.strip!
 
     # Bounceable offences.
     return '' if s.match(/^Yes/)
