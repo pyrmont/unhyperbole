@@ -45,26 +45,26 @@ class Dieperbole
     if sentences[next_idx]
       # Eliminate "Will flibber flubber? Yes." collections.
       # Let's leave the rhetorical questions to the politicians.
-      if s.match(/\?$/) && sentences[next_idx].length < 12 # Mike Magic.
+      if s.match(/\?$/) && sentences[next_idx].length < 30 # Mike Magic.
         sentences[next_idx] = ''
         return ''
       end
 
       # Again with conjunctions beginning sentences.
-      if sentences[next_idx].match(/^And /)
+      if sentences[next_idx].match(/^(?:<[a-zA-Z](?: [a-zA-Z-]+="[^"]+">)*)?And /)
         s = s + ' ' + sentences[next_idx][0, 1].downcase + sentences[next_idx][1..-1]
         sentences[next_idx] = ''
       end
     end    
     
     # Solve that I disease problem.
-    return '' if s.match(/^I /)
+    return '' if s.match(/^(?:<[a-zA-Z](?: [a-zA-Z-]+="[^"]+">)*)?I/)
     
     # No sentence needs to begin with 'Yes'.
-    s.sub!(/^Yes, /, '')
+    s.sub!(/^(?:<[a-zA-Z](?: [a-zA-Z-]+="[^"]+">)*)?Yes, /, '')
     
     # But's a conjunctive. What you mean is 'However'.
-    s.sub!(/^But /, 'However, ')
+    s.sub!(/^(?:<[a-zA-Z](?: [a-zA-Z-]+="[^"]+">)*)?But /, 'However, ')
     
     # That'll do.
     s[0].capitalize + s[1..-1]
