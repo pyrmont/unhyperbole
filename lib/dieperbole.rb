@@ -47,17 +47,24 @@ class Dieperbole
         sentences[next_idx] = ''
         return ''
       end
-    end  
-
-    # Bounceable offences.
-    return '' if s.match(/^I /)
+    end
     
-    # Moderate offences.
-    s.sub!(/^Yes, /, '')
-    s.sub!(/^But /, 'However, ')
+    # Again with conjunctions beginning sentences.
+    if sentences[next_idx] && sentences[next_idx].match(/^And /)
+      s = s + ' ' + sentences[next_idx][0, 1].downcase + sentences[next_idx][1..-1]
+      sentences[next_idx] = ''
+    end    
 
-    # Ok, that'll do.
-    s
+    # Solve that I disease problem.
+    s.sub!(/^I /, '')
+    
+    # No sentence needs to begin with 'Yes'.
+    s.sub!(/^Yes, /, '')
+    
+    # But's a conjunctive. What you mean is 'However'.
+    s.sub!(/^But /, 'However, ')
+        
+    s += '</p>'
   end
 
   def get_paragraphs
