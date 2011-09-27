@@ -1,2 +1,2 @@
-require './hisaishi'
+require './app'
 run Sinatra::Application
