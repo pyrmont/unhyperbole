@@ -17,7 +17,7 @@ class Dieperbole
 
     doc = Nokogiri::HTML(raw_content)
     lines = []
-    doc.xpath('//p').text
+    doc.xpath('//p').to_html
   end
 
   def unhyperbole
@@ -45,7 +45,7 @@ class Dieperbole
   end
 
   def get_sentences
-    content.scan(/[^\.?]+[\.?][\s]*/m)
+    content.scan(/[^\.?]+[\.?][\s]/m)
   end
 
 end
