@@ -34,7 +34,6 @@ class Dieperbole
     s.strip!
 
     # Bounceable offences.
-    return '' if s.match(/^Yes/)
     return '' if s.match(/\?$/)
     return '' if s.match(/^I /)
     
