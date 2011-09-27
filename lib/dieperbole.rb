@@ -51,7 +51,6 @@ class Dieperbole
 
     # Bounceable offences.
     return '' if s.match(/^I /)
->>>>>>> 7d8dc4778235d6dff9c7558f984268bc0d5c1d0c
     
     cleaned_content += '</p>'
   end
