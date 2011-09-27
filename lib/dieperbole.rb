@@ -58,8 +58,7 @@ class Dieperbole
 
       # Again with conjunctions beginning sentences.
       if sentences[next_idx].match(/^(?:<[a-zA-Z]+(?: [a-zA-Z-]+="[^"]+">)*)?And /)
-        s = s + ' ' + sentences[next_idx][0, 1].downcase + sentences[next_idx][1..-1]
-        sentences[next_idx] = ''
+        sentences[next_idx] = sentences[next_idx][3..-1]
       end
     end    
     
