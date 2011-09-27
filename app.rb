@@ -10,7 +10,7 @@ get '/' do
   
   feed.entries.each do |entry|
     d = Dieperbole.new(entry.content)
-    html += entry.title
+    html += "<a href=\"#{entry.url}\">#{entry.title}</a>"
     html += "<br/>\n"
     html += '<div style="border: 1px solid #888; padding: 10px;">'
     html += d.unhyperbole
