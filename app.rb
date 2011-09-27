@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'feedzirra'
+require 'haml'
 require File.expand_path('lib/dieperbole.rb', File.dirname(__FILE__))
 
 get '/' do
