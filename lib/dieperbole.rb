@@ -39,6 +39,7 @@ class Dieperbole
     
     # Moderate offences.
     s.sub!(/^Yes, /, '')
+    s.sub!(/^But /, 'However, ')
 
     s # TODO
   end
