@@ -27,9 +27,11 @@ class Dieperbole
     cleaned = []
     paragraphs = get_paragraphs
     paragraphs.each do |sentences|
+      cleaned << '<p>'
       sentences.each_index do |idx|
-        cleaned.push unhyperbole_sentence(idx, sentences)
+        cleaned << unhyperbole_sentence(idx, sentences)
       end
+      cleaned << '</p>'
     end
     cleaned.join(" ")
   end
@@ -87,7 +89,12 @@ class Dieperbole
       m = paragraph.match(/(.+?(?:\. |\? |\.<\/p>))/m, offset)
       break unless m
 
-      sentences << m[0] # Add it to the pile.
+      sentence = m[0].strip
+                     .sub(/^<p>/, '')
+                     .sub(/<\/p>$/, '')
+
+      # Add it to the pile.
+      sentences << sentence
 
       # .offset returns [start, end] - take the
       # end and use it as the new offset.
