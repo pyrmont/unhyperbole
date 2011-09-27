@@ -64,7 +64,7 @@ class Dieperbole
     # But's a conjunctive. What you mean is 'However'.
     s.sub!(/^But /, 'However, ')
         
-    cleaned_content += '</p>'
+    s += '</p>'
   end
 
   def get_paragraphs
