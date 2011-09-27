@@ -35,8 +35,10 @@ class Dieperbole
   end
 
   def unhyperbole_sentence(idx, sentences)
-    s = sentences[idx]
+    s = sentences[idx]    
     s.strip!
+    
+    return '' if s.empty?
 
     # If there's a next sentence (and this isn't at the end of a paragraph):
     next_idx = idx + 1
