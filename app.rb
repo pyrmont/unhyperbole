@@ -18,5 +18,5 @@ get '/' do
     html += "</div>\n"
   end
   
-  html
+  haml :index, :locals => { :html => html } 
 end
