@@ -8,8 +8,10 @@ get '/' do
   feed.title
   
   feed.entries.each do |entry|
+    d = Dieperbole.new(entry.content)
     html += entry.title
     html += '<br/>'
+    html += d.unhyperbole
   end
   
   html
