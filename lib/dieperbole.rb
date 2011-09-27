@@ -66,6 +66,10 @@ class Dieperbole
     # Solve that I disease problem.
     # return '' if s.match(/^(?:<[a-zA-Z]+(?: [a-zA-Z-]+="[^"]+">)*)?I /)
     
+    # Get rid of sentences that have three words or less in them.
+    words = s.split(' ');
+    return '' if words.length < 4
+    
     # No sentence needs to begin with 'Yes'.
     s.sub!(/^(?:<[a-zA-Z]+(?: [a-zA-Z-]+="[^"]+">)*)?Yes, /, '')
     
