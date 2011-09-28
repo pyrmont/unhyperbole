@@ -28,8 +28,10 @@ describe Unhyperbole do
     it "should join two sentences together if the second begins with 'And'" do
       test_with_fixture 'double-sentence'
     end
+    it "should remove sentences with less than three words in them" do
+      test_with_fixture 'short-sentence'
+    end
 
-    pending "should remove sentences with less than three words in them"
     pending "should remove sentences that begin with the phrase 'I love'"
     pending "should remove sentences that consist entirely of 'They are the real deal.'"
     pending "should remove the 'Yes, ' with which Siegler often beings a statement"
