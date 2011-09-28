@@ -46,6 +46,8 @@ class Unhyperbole
     
     return '' if s.empty?
     
+    tag_regex = '(?:<[a-zA-Z]+(?: [a-zA-Z-]+="[^"]+">)*)?'
+
     # If there's a next sentence (and this isn't at the end of a paragraph):
     next_idx = idx + 1
     if sentences[next_idx]
@@ -57,7 +59,7 @@ class Unhyperbole
       end
 
       # Again with conjunctions beginning sentences.
-      if !s.index('and') && sentences[next_idx].match(/^(?:<[a-zA-Z]+(?: [a-zA-Z-]+="[^"]+">)*)?And /)
+      if !s.index('and') && sentences[next_idx].match(/^#{tag_regex}And /)
         s = s[0..-2] + ' ' + sentences[next_idx][0, 1].downcase + sentences[next_idx][1..-1]
         sentences[next_idx] = ''
       end
@@ -74,10 +76,10 @@ class Unhyperbole
     return '' if s.match(/^They are the real deal./)
     
     # No sentence needs to begin with 'Yes'.
-    s.sub!(/^(?:<[a-zA-Z]+(?: [a-zA-Z-]+="[^"]+">)*)?Yes, /, '')
+    s.sub!(/^#{tag_regex}Yes, /, '')
     
     # But's a conjunctive. What you mean is 'However'.
-    s.sub!(/^(?:<[a-zA-Z]+(?: [a-zA-Z-]+="[^"]+">)*)?But /, 'However, ')
+    s.sub!(/^#{tag_regex}But /, 'However, ')
     
     # That'll do.
     s[0].capitalize + s[1..-1]
