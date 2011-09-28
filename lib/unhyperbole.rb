@@ -67,6 +67,9 @@ class Unhyperbole
     words = s.split(' ');
     return '' if words.length < 4
     
+    # You may love it but we don't.
+    return '' if s.match(/^(?:<[a-zA-Z]+(?: [a-zA-Z-]+="[^"]+">)*)?I love /)
+    
     # No sentence needs to begin with 'Yes'.
     s.sub!(/^(?:<[a-zA-Z]+(?: [a-zA-Z-]+="[^"]+">)*)?Yes, /, '')
     
