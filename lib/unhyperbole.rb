@@ -70,6 +70,9 @@ class Unhyperbole
     # You may love it but we don't.
     return '' if s.match(/^(?:<[a-zA-Z]+(?: [a-zA-Z-]+="[^"]+">)*)?I love /)
     
+    # That's great but we'll make the decision on that one.
+    return '' if s.match(/^They are the real deal./)
+    
     # No sentence needs to begin with 'Yes'.
     s.sub!(/^(?:<[a-zA-Z]+(?: [a-zA-Z-]+="[^"]+">)*)?Yes, /, '')
     
