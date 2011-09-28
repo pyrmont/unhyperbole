@@ -70,7 +70,7 @@ class Unhyperbole
     return '' if words.length < 4
     
     # You may love it but we don't.
-    return '' if s.match(/^(?:<[a-zA-Z]+(?: [a-zA-Z-]+="[^"]+">)*)?I love /)
+    return '' if s.match(/^#{tag_regex}I love /)
     
     # That's great but we'll make the decision on that one.
     return '' if s.match(/^They are the real deal./)
