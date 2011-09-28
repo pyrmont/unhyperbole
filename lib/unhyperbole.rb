@@ -2,7 +2,7 @@ require 'rubygems'
 require 'open-uri'
 require 'nokogiri'
 
-class Dieperbole
+class Unhyperbole
 
   attr_accessor :content
 
@@ -62,10 +62,7 @@ class Dieperbole
         sentences[next_idx] = ''
       end
     end    
-    
-    # Solve that I disease problem.
-    # return '' if s.match(/^(?:<[a-zA-Z]+(?: [a-zA-Z-]+="[^"]+">)*)?I /)
-    
+        
     # Get rid of sentences that have three words or less in them.
     words = s.split(' ');
     return '' if words.length < 4

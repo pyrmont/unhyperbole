@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'feedzirra'
 require 'haml'
-require File.expand_path('lib/dieperbole.rb', File.dirname(__FILE__))
+require File.expand_path('lib/unhyperbole.rb', File.dirname(__FILE__))
 
 get '/' do
   html = ''
@@ -10,10 +10,10 @@ get '/' do
   feed.title
   
   feed.entries.each do |entry|
-    d = Dieperbole.new(entry.content)
+    u = Unhyperbole.new(entry.content)
     html += "<h2><a href=\"#{entry.url}\">#{entry.title}</a></h2>"
     html += '<div>'
-    html += d.unhyperbole
+    html += u.unhyperbole
     html += "</div>\n"
   end
   
