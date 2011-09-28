@@ -25,8 +25,10 @@ describe Unhyperbole do
     it "should eliminate rhetorical questions" do
       test_with_fixture 'rhetorical'
     end
+    it "should join two sentences together if the second begins with 'And'" do
+      test_with_fixture 'double-sentence'
+    end
 
-    pending "should join two sentences together if the second begins with 'And'"
     pending "should remove sentences with less than three words in them"
     pending "should remove sentences that begin with the phrase 'I love'"
     pending "should remove sentences that consist entirely of 'They are the real deal.'"
