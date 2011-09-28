@@ -16,7 +16,7 @@ Unhyperbole scans through MG Siegler's posts and makes the following corrections
 - joins two sentences together if the second sentence begins with 'And' and the previous sentence did not contain 'and';
 - removes sentences with less than three words in them;
 - removes the 'Yes, ' with which Siegler often begins a statement; and
-- replaces the 'But ' at the beginning of a sentence with 'However'.
+- replaces the 'But ' at the beginning of a sentence with 'However, '.
 
 We think the result is prose that communicates the same information but with a more considered tone.
 
@@ -30,7 +30,6 @@ git clone git://github.com/pyrmont/unhyperbole.git  # Warning: read-only.
 cd unhyperbole
 
 bundle install
-alias be="bundle exec"
 
 # Kick it off in development mode
 be ruby app.rb
