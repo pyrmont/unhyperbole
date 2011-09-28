@@ -20,5 +20,7 @@ get '/' do
   slogans = [ 'Because sometimes you&#146;ve had enough fucking rhetorical questions.', 'Like the Siegler. Hate the hyperbole.' ]
   slogan = slogans[rand(slogans.size)]
   
+  response['Cache-Control'] = 'public, max-age=1000'
+  
   haml :index, :locals => { :html => html, :slogan => slogan }
 end
