@@ -28,10 +28,7 @@ Unhyperbole is just a simple Sinatra application.
 ```bash
 git clone git://github.com/pyrmont/unhyperbole.git  # Warning: read-only.
 cd unhyperbole
-
 bundle install
-
-# Kick it off in development mode
 be ruby app.rb
 ```
 
