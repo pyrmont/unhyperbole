@@ -4,9 +4,12 @@
     %link{:rel => "stylesheet", :type => "text/css", :href => 'http://fonts.googleapis.com/css?family=Lora:400,700,400italic&subset=latin,latin-ext'}    
     %link{:rel => "stylesheet", :type => "text/css", :href => "/stylesheet.css?1"}
   %body
+    %div{:id => "header"}
+      %p
+        <a href="http://github.com/damncabbage/">Rob</a> and <a href="http://github.com/pyrmont/">Mike</a> had fun making this. You can and should read the inimitable Mr Siegler&#146;s work in full at <a href="http://techcrunch.com/author/mg-siegler/">TechCrunch</a>. Rest assured, we&#146;re working on an algorithm to insert random photos of movies into each post.
     %h1
-      <strong>Unhyperbole</strong>: Because sometimes you&#146;ve had enough fucking rhetorical questions.
+      <strong>Unhyperbole</strong>: #{slogan}
     #{html}
     %div{:id => "footer"}
-      %p
-        Rob and Mike had fun making this. You can and should read the inimitable Mr Siegler&#146;s work in full at <a href="http://techcrunch.com/author/mg-siegler/">TechCrunch</a>. Rest assured, we&#146;re working on an algorithm to insert random photos of movies into each post.
+      &#8226; &#8226; &#8226;
+    

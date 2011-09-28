@@ -17,5 +17,8 @@ get '/' do
     html += "</div>\n"
   end
   
-  haml :index, :locals => { :html => html } 
+  slogans = [ 'Because sometimes you&#146;ve had enough fucking rhetorical questions.', 'Like the Siegler. Hate the hyperbole.' ]
+  slogan = slogans[rand(slogans.size)]
+  
+  haml :index, :locals => { :html => html, :slogan => slogan }
 end

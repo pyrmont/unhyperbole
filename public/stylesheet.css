@@ -107,9 +107,17 @@ a {
   Global Styles
 -----------------------------------------------------------------------------------------------*/
 
-div#footer {
+div#header {
 	border-top: 1px solid black;
 	font-size: 0.8em;
 	opacity: 0.5;
 	padding: 2em 0;	
+}
+
+div#footer {
+	font-size: 0.8em;
+	opacity: 0.5;
+	padding: 1em 0 2em;	
+	text-align: center;
+	letter-spacing: 3.0em;
 }
