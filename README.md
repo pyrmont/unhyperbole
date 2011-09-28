@@ -15,6 +15,8 @@ Unhyperbole scans through MG Siegler's posts and makes the following corrections
 - eliminates rhetorical questions;
 - joins two sentences together if the second sentence begins with 'And' and the previous sentence did not contain 'and';
 - removes sentences with less than three words in them;
+- removes sentences that begin with the phrase 'I love ';
+- removes sentences that consist entirely of 'They are the real deal.';
 - removes the 'Yes, ' with which Siegler often begins a statement; and
 - replaces the 'But ' at the beginning of a sentence with 'However, '.
 
