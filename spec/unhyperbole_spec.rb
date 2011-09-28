@@ -33,7 +33,10 @@ describe Unhyperbole do
     pending "should remove sentences that begin with the phrase 'I love'"
     pending "should remove sentences that consist entirely of 'They are the real deal.'"
     pending "should remove the 'Yes, ' with which Siegler often beings a statement"
-    pending "should replace the 'But' at the beginning of a sentence with 'However'"
+
+    it "should replace the 'But' at the beginning of a sentence with 'However'" do
+      test_with_fixture 'but-sentence'
+    end
 
   end
 end
