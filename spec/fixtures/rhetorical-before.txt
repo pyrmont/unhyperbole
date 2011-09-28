@@ -1,0 +1,1 @@
+<p><a href="http://blog.jeffverkoeyen.com/back-to-the-bay-area">On his personal blog today</a>, developer Jeff Verkoeyen reveals that Facebook's iPad app has been feature complete since May. How does he know? He built it. He was the lead engineer on the project.</p>

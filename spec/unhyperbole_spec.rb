@@ -7,7 +7,25 @@ describe Unhyperbole do
 
   context "when cleaning a chunk of markup" do
 
-    pending "should eliminate rhetorical questions"
+    # These chunks of markup are unwieldy; move them out to fixtures, and check those.
+    let(:fixtures_path) { File.join(PROJECT_ROOT, 'spec', 'fixtures') }
+    def get_file(filename)
+      File.open(File.join(fixtures_path, filename)) { |f| f.read }.strip
+    end
+    def get_before(name)
+      get_file "#{name}-before.txt"
+    end
+    def get_after(name)
+      get_file "#{name}-after.txt"
+    end
+    def test_with_fixture(name)
+      Unhyperbole.new(get_before(name)).unhyperbole.should == get_after(name)
+    end
+
+    it "should eliminate rhetorical questions" do
+      test_with_fixture 'rhetorical'
+    end
+
     pending "should join two sentences together if the second begins with 'And'"
     pending "should remove sentences with less than three words in them"
     pending "should remove sentences that begin with the phrase 'I love'"
