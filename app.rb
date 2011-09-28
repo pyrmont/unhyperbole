@@ -17,7 +17,7 @@ get '/' do
     html += "</div>\n"
   end
   
-  slogans = [ 'Because sometimes you&#146;ve had enough fucking rhetorical questions.', 'Like the Siegler. Hate the hyperbole.' ]
+  slogans = [ 'Because sometimes you&#146;ve had enough rhetorical questions.', 'All Siegler. Zero hyperbole.', 'A refreshing blend of great sources and restrained prose.' ]
   slogan = slogans[rand(slogans.size)]
   
   response['Cache-Control'] = 'public, max-age=1000'
