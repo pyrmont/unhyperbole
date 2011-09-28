@@ -99,9 +99,11 @@ class Unhyperbole
     sentences = []
     offset = 0
     while offset < paragraph.length
-      m = paragraph.match(/(.+?(?:\. |\? |\.<\/p>))/m, offset)
+      # Horrifying.
+      m = paragraph.match(/(.+?((?:\.|\?|!)(?:\s|&#822.;)|<\/p>))/m, offset)
       break unless m
 
+      # Truly horrifying.
       sentence = m[0].strip
                      .sub(/^<p>/, '')
                      .sub(/<\/p>$/, '')
