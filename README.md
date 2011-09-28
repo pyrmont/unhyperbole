@@ -29,7 +29,7 @@ Unhyperbole is just a simple Sinatra application.
 git clone git://github.com/pyrmont/unhyperbole.git  # Warning: read-only.
 cd unhyperbole
 bundle install
-be ruby app.rb
+bundle exec ruby app.rb
 ```
 
 You can of course deploy Unhyperbole to [Heroku](http://heroku.com/) in a snap. That's what we're [doing](http://unhyperbole.heroku.com/).
